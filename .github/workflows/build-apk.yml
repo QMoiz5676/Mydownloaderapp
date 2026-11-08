@@ -22,6 +22,7 @@ jobs:
         run: |
           unzip -q "$(ls *.zip | head -n1)" -d proj
           cd "$(dirname "$(find proj -name settings.gradle.kts | head -n1)")"
+                    sed -i 's/, "armeabi-v7a"//' app/build.gradle.kts
           gradle assembleDebug --no-daemon
           mkdir -p "$GITHUB_WORKSPACE/out"
           cp app/build/outputs/apk/debug/app-debug.apk "$GITHUB_WORKSPACE/out/"
